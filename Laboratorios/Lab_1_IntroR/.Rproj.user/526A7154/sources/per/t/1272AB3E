@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1596396192654.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "978175935",
+    "id" : "1272AB3E",
+    "lastKnownWriteTime" : 1596054725,
+    "last_content_update" : 1596054725,
+    "path" : "~/UFM/4th_year/2ndo_Semestre/Data Wrangling/Data-Wrangling/Laboratorios/Lab_1_IntroR/IntroR.R",
+    "project_path" : "IntroR.R",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
