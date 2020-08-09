@@ -1,0 +1,242 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Laboratorio 1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Laboratorio 1}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\#rmarkdown::github\_document
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(readr)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problema-1}{%
+\section{Problema \#1}\label{problema-1}}
+
+Creamos una lista de los archivos por cargar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{files =}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\DataTypeTok{pattern =} \StringTok{".xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Creamos una función que cargue los archivos y seleccione las columnas
+que necesitamos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{read_excel_files =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(path,cols)\{}
+
+  \CommentTok{# Leemos el archivo}
+\NormalTok{  df =}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(path)}
+  
+  \CommentTok{# Creamos las columnas de mes y año}
+\NormalTok{  fecha =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(path,}\StringTok{".xlsx"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{  df[}\StringTok{"FECHA"}\NormalTok{] =}\StringTok{ }\NormalTok{fecha}
+  
+\NormalTok{  sliced_df =}\StringTok{ }\NormalTok{df[cols]}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(sliced_df))}
+  \KeywordTok{return}\NormalTok{(sliced_df)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Ejecutamos la función y guardamos el output a una \emph{lista}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{columnas =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"COD_VIAJE"}\NormalTok{,}\StringTok{"CLIENTE"}\NormalTok{,}\StringTok{"UBICACION"}\NormalTok{,}\StringTok{"CANTIDAD"}\NormalTok{,}
+             \StringTok{"PILOTO"}\NormalTok{,}\StringTok{"Q"}\NormalTok{,}\StringTok{"CREDITO"}\NormalTok{,}\StringTok{"UNIDAD"}\NormalTok{,}\StringTok{"FECHA"}\NormalTok{)}
+
+\NormalTok{df_list =}\StringTok{ }\KeywordTok{lapply}\NormalTok{(files, read_excel_files,columnas)}
+\end{Highlighting}
+\end{Shaded}
+
+Unimos los archivos a una sola tabla y la guardamos como \emph{csv}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Tabla final}
+\NormalTok{concat_df =}\StringTok{ }\KeywordTok{do.call}\NormalTok{(rbind,df_list)}
+\KeywordTok{write_excel_csv}\NormalTok{(concat_df,}\StringTok{"entregas_2018.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problema-2}{%
+\section{Problema \#2}\label{problema-2}}
+
+Creamos una funcion que calcule la moda de una lista (R no tiene un
+función que calcule la moda). Si existen multiples modas entonces
+devulve varias modas. Si no existen modas devuelve un valor \emph{NULL}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{moda <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lista)\{}
+\NormalTok{  tbl =}\StringTok{ }\KeywordTok{table}\NormalTok{(lista)}
+\NormalTok{  cond =}\StringTok{ }\NormalTok{(tbl}\OperatorTok{>}\DecValTok{1}\NormalTok{)}\OperatorTok{&}\NormalTok{(tbl}\OperatorTok{==}\KeywordTok{max}\NormalTok{(tbl))}
+\NormalTok{  modas =}\StringTok{ }\KeywordTok{names}\NormalTok{(tbl)[cond]}
+  
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(modas)}\OperatorTok{==}\DecValTok{0}\NormalTok{) modas=}\OtherTok{NULL}
+  
+  \KeywordTok{return}\NormalTok{(modas)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Creamos una lista de vectores para probar la función.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lista_vec =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\KeywordTok{lapply}\NormalTok{(lista_vec,moda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## NULL
+## 
+## [[2]]
+## [1] "2"
+## 
+## [[3]]
+## [1] "2" "3"
+\end{verbatim}
+
+\hypertarget{problema-3}{%
+\section{Problema \#3}\label{problema-3}}
+
+Cargamos el archivo de la pagina de la SAT usando la funcion
+\emph{read\_delim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PATH =}\StringTok{ "C:/Users/Jose/Documents/UFM/4th_year/2ndo_Semestre/Data Wrangling/Data/datos_sat/INE_PARQUE_VEHICULAR_080720.txt"} \CommentTok{# Path en mi maquina}
+\NormalTok{data_sat =}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(PATH,}\DataTypeTok{delim =}\StringTok{"|"}\NormalTok{) }\CommentTok{# Columna X11 parseada por error (prob. un simbolo "|" extra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   ANIO_ALZA = col_double(),
+##   MES = col_character(),
+##   NOMBRE_DEPARTAMENTO = col_character(),
+##   NOMBRE_MUNICIPIO = col_character(),
+##   MODELO_VEHICULO = col_character(),
+##   LINEA_VEHICULO = col_character(),
+##   TIPO_VEHICULO = col_character(),
+##   USO_VEHICULO = col_character(),
+##   MARCA_VEHICULO = col_character(),
+##   CANTIDAD = col_double(),
+##   X11 = col_character()
+## )
+\end{verbatim}
+
+\end{document}
