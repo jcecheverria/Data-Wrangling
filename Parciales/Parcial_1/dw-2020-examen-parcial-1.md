@@ -216,3 +216,6 @@ más del 5%. La manera en que se calculo el rate de venta fue sumando las
 perdidas de ese territorio y dividirlas dentro de los ingresos de ese
 mismo territorio, para determinar asi cuanto estamos perdiendo por cada
 unidad monetaria que vendemos.
+
+Bajo mi criterio deberiamos dejar de operar en
+`68de9759`,`8682908b`,`e6fd9da9` y `13b223c9`.
