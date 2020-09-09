@@ -1,0 +1,153 @@
+---
+title: "dw-2020-parcial-1"
+author: "Tepi"
+date: "9/3/2020"
+output: rmarkdown::github_document
+
+---
+
+# Examen parcial
+
+Indicaciones generales:
+
+* Usted tiene el período de la clase para resolver el examen parcial.
+* La entrega del parcial, al igual que las tareas, es por medio de su cuenta de github, pegando el link en el portal de MiU.
+
+
+* Pueden hacer uso del material del curso e internet (stackoverflow, etc.). Sin embargo, si encontramos algún indicio de copia, se anulará el exámen para los estudiantes involucrados. Por lo tanto, aconsejamos no compartir las agregaciones que generen. 
+
+## Sección I: Preguntas teóricas.
+
+* Existen 10 preguntas directas en este Rmarkdown, de las cuales usted deberá responder 5. Las 5 a responder estarán determinadas por un muestreo aleatorio basado en su número de carné.
+
+* Ingrese su número de carné en  `set.seed()` y corra el chunk de R para determinar cuáles preguntas debe responder.
+
+
+```{r, echo=TRUE, cache=TRUE}
+
+set.seed(20170018)
+v<- 1:10
+preguntas <-sort(sample(v, size = 5, replace = FALSE ))
+
+paste0("Mis preguntas a resolver son: ",paste0(preguntas,collapse = ", "))
+
+```
+
+
+### Listado de preguntas teóricas
+
+1. Para las siguientes sentencias de `base R`, liste su contraparte de `dplyr`:
+    * `str()` = `glimpse()`
+    * `df[,c("a","b")]` = `dat %>% select(a,b)`
+    * `names(df)[4] <- "new_name"` donde la posición 4 corresponde a la variable `old_name` = `rename(df, new_name = old_name)`
+    * `df[df$variable == "valor",]` = `dat %>% filter(variable == "valor")`
+    
+    
+2. Al momento de filtrar en SQL, ¿cuál keyword cumple las mismas funciones que el keyword `OR`  para filtrar uno o más elementos una misma columna?
+3. ¿Por qué en R utilizamos funciones de la familia apply (lapply,vapply) en lugar de utilizar ciclos?
+4. ¿Cuál es la diferencia entre utilizar `==` y `=` en R?
+
+Asignación de variables se hace por medio de `=` mientras que `==` actua como operador logico, es decir determina si ambos elementos son iguales y devuelve un Boolean (`TRUE`/`FALSE`). 
+
+5. ¿Cuál es la forma correcta de cargar un archivo de texto donde el delimitador es `:`?
+6. ¿Qué es un vector y en qué se diferencia en una lista en R?
+7. ¿Qué pasa si quiero agregar una nueva categoría a un factor que no se encuentra en los niveles existentes?
+
+Puedo cambiar esa variable a char/string y agregarle las cambios de categorias o nuevas obs. con diferentes categorias y despues parsear esa columna como factor. O bien puedo cambiar los niveles de esa columna y agregarle el otro nivel que quiero. 
+
+Ejemplo: `levels(data$categoria) <- c(levels(data$categoria),"nueva_categoria")`
+
+8. Si en un dataframe, a una variable de tipo `factor` le agrego un nuevo elemento que *no se encuentra en los niveles existentes*, ¿cuál sería el resultado esperado y por qué?
+    * El nuevo elemento
+    * `NA`
+    
+Deberia esperar un `NA` porque ese nivel no se reconocería ya que es nuevo y no estaba registrado en los niveles del factor.
+    
+9. En SQL, ¿para qué utilizamos el keyword `HAVING`?
+
+Es un keyword importante para filtrar los resultados de nuestro query luego de usar un `group by`. La razón por la que se usa `HAVING` se debe a que no podemos usar un simple `WHERE` para filtrar los resultados POR GRUPO. El keyword `WHERE` solo nos filtraria por rows.
+
+10. Si quiero obtener como resultado las filas de la tabla A que no se encuentran en la tabla B, ¿cómo debería de completar la siguiente sentencia de SQL?
+
+    * SELECT * FROM A _______ B ON A.KEY = B.KEY WHERE __________ = __________
+  
+Extra: ¿Cuántos posibles exámenes de 5 preguntas se pueden realizar utilizando como banco las diez acá presentadas?
+
+
+
+## Sección II Preguntas prácticas.
+
+
+* Conteste las siguientes preguntas utilizando sus conocimientos de R. Adjunte el código que utilizó para llegar a sus conclusiones en un chunk del markdown.
+
+A. De los clientes que están en más de un país,¿cuál cree que es el más rentable y por qué?
+
+B. Estrategia de negocio ha decidido que ya no operará en aquellos territorios cuyas pérdidas sean "considerables". Bajo su criterio, ¿cuáles son estos territorios y por qué ya no debemos operar ahí?
+
+
+### I. Preguntas teóricas
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+```
+
+
+## A
+
+```{r echo=TRUE, warning=FALSE,message=FALSE}
+dat <- readRDS("parcial_anonimo.rds")
+
+dat %>% 
+  group_by(Pais,Cliente) %>%
+  summarise(n(),sum_pais = sum(Venta)) %>%
+  group_by(Cliente) %>% 
+  summarise(paises_no = n(),ventas_cliente_total =sum(sum_pais) ) %>% 
+  filter(paises_no >1) %>% 
+  arrange(desc(ventas_cliente_total))
+```
+
+
+El cliente más rentable (ventas totales a lo largo del periodo estudiado) es el cliente `a17a7558`. La forma de determinar la rentabilidad del cliente fue agregando los ingresos y perdidas generados por este cliente a lo largo de todo el tiempo estudiado. 
+
+
+## B
+
+```{r }
+
+dat %>%
+  group_by(Territorio) %>% 
+  summarise(ventas_territorio = sum(Venta)) %>% 
+  arrange(ventas_territorio)
+
+```
+
+
+No tengo perdidas netas en ningun territorio. Pero si tengo territorios con ingresos bajos. Especificamente los territorios de `e6fd9da9` y `13b223c9`.
+
+
+```{r echo=TRUE, warning=FALSE,message=FALSE}
+
+df_perdidas <-dat %>% 
+            group_by(Territorio) %>%
+            filter(Venta < 0) %>% 
+            summarise(perdidas_territorio = sum(Venta)) %>% 
+            arrange(perdidas_territorio)
+
+df_ingresos <-dat %>% 
+            group_by(Territorio) %>%
+            filter(Venta >= 0) %>% 
+            summarise(ingresos_territorio = sum(Venta)) %>% 
+            arrange(ingresos_territorio)
+
+df_consolidado <- inner_join(df_perdidas,
+                             df_ingresos,
+                             by="Territorio") %>%
+                  mutate(rate_perdida_porcentaje = abs(perdidas_territorio/ingresos_territorio*100))
+
+# OJO a aca solo considero los territorios donde perdi dinero. Al hacer el inner join perdi
+# positivos que no tenian ninguna venta "negativa"
+df_consolidado %>% arrange(desc(rate_perdida_porcentaje))
+
+```
+
+En terminos generales no tengo territorios con rates de perdidas muy grandes. El maximo es casi de 6%, siendo el territorio `68de9759` seguido por el territorio de `8682908b` con un rate de perdida de poco más del 5%. La manera en que se calculo el rate de venta fue sumando las perdidas de ese territorio y dividirlas dentro de los ingresos de ese mismo territorio, para determinar asi cuanto estamos perdiendo por cada unidad monetaria que vendemos.
